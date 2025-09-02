@@ -9,7 +9,7 @@ class Machine(models.Model):
     slots = models.PositiveIntegerField(default=5)  # Number of bottle slots
 
     def __str__(self):
-        return f"{self.name} ({self.store.name})"
+        return f"{self.serial_number} ({self.store.name})"
 
 
 class BottleSlot(models.Model):
@@ -21,7 +21,7 @@ class BottleSlot(models.Model):
     last_refilled = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return f"Slot {self.position} - {self.machine.name}"
+        return f"Slot {self.position} - {self.machine.serial_number}"
 
 class MachineIssue(models.Model):
     machine = models.ForeignKey(Machine, on_delete=models.CASCADE, related_name="issues")
@@ -43,4 +43,4 @@ class MachineIssue(models.Model):
 
     def __str__(self):
         status = "Resolved" if self.is_resolved else "Open"
-        return f"Issue: {self.title} [{status}] on {self.machine.name}"
+        return f"Issue: {self.title} [{status}] on {Machine.serial_number}"

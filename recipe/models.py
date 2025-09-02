@@ -24,4 +24,4 @@ class RecipeSlot(models.Model):
     amount_ml = models.PositiveIntegerField() 
     
     def __str__(self):
-        return f"{self.ingredient.name} ({self.amount_ml}ml)"
+        return f"{Ingredient.name} ({self.amount_ml}ml)"
