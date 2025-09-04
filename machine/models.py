@@ -20,6 +20,9 @@ class BottleSlot(models.Model):
     capacity_ml = models.PositiveIntegerField(default=1000) 
     last_refilled = models.DateTimeField(auto_now=True)
 
+    class Meta:
+        unique_together = ('machine', 'position')
+        
     def __str__(self):
         return f"Slot {self.position} - {self.machine.serial_number}"
 
