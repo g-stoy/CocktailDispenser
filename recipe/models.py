@@ -21,6 +21,7 @@ class Recipe(models.Model):
 class RecipeSlot(models.Model):
     recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE, related_name="slots")
     slot_number = models.PositiveIntegerField()
+    ingredient = models.ForeignKey(Ingredient, on_delete=models.CASCADE)
     amount_ml = models.PositiveIntegerField() 
     
     def __str__(self):
